@@ -7,7 +7,12 @@ run_bootstrap() {
 
 Upgrade_UpdateScripts() {
 	download_file "crossmix_update.sh" "https://raw.githubusercontent.com/cizia64/CrossMix-OS/refs/heads/main/System/usr/trimui/scripts/crossmix_update.sh" -d "/mnt/SDCARD/System/usr/trimui/scripts/"
-	download_file "update_ota_release.sh" "https://raw.githubusercontent.com/cizia64/CrossMix-OS/refs/heads/main/System/usr/trimui/scripts/update_ota_release.sh" -d "/mnt/SDCARD/System/usr/trimui/scripts/"
+	if [ -f "/mnt/SDCARD/betatest" ]; then
+		download_file "update_ota_release.sh" "https://dl.dropbox.com/scl/fi/3omlfp6tb13hadh25ivod/update_ota_release.sh?rlkey=2if0wx1k4dta8ozzhevr1mfn9" -f "/mnt/SDCARD/System/usr/trimui/scripts/update_ota_release.sh"
+		rm "/mnt/SDCARD/betatest"
+	else
+		download_file "update_ota_release.sh" "https://raw.githubusercontent.com/cizia64/CrossMix-OS/refs/heads/main/System/usr/trimui/scripts/update_ota_release.sh" -d "/mnt/SDCARD/System/usr/trimui/scripts/"
+	fi
 	download_file "update_common.sh" "https://raw.githubusercontent.com/cizia64/CrossMix-OS/refs/heads/main/System/usr/trimui/scripts/update_common.sh" -d "/mnt/SDCARD/System/usr/trimui/scripts/"
 }
 
